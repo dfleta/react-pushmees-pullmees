@@ -52,7 +52,6 @@ MrMeeseeks.prototype.learnRequest = function(deseo, objeto) {
     this.accion = deseo(objeto);
 };
 
-
 // singleton de MrMeeseeks
 var factory = (function singletonMrMeeseeks() {
 

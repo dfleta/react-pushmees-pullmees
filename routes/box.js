@@ -5,6 +5,16 @@ var router = express.Router();
 // Require controller modules
 var boxController = require('../controllers/boxController');
 
+
+// ROUTER LEVEL MIDDLEWARE
+
+router.use(function (req, res, next) {
+    console.log(req.url);
+    console.log(req.body);
+
+    next();
+  })
+
 /**
  * Box routes
  * 

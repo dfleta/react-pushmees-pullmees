@@ -21,14 +21,14 @@ var boxAPI = (function singleController() {
 
     // get a meeseeks box
 
-    const factoryBox = function(req, res) {
+    const factory = function(req, res) {
         // res.send('NOT IMPLEMENTED: Meeseeks Box');
         res.status(200).type('json').json(box);
     };
     
     // get a meeseeks
     
-    const boxCreateMeeseeks = function(req, res) {
+    const createMeeseeks = function(req, res) {
         // res.send('NOT IMPLEMENTED: Create meeseeks');
         box.pressButton(reality);
         console.log("reality length = ", reality.length);
@@ -37,8 +37,8 @@ var boxAPI = (function singleController() {
     
     // public API
     return {
-        factory: factoryBox,
-        createMeeseeks: boxCreateMeeseeks
+        factory,
+        createMeeseeks
     };
 })(); 
 

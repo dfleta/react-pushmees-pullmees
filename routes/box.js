@@ -16,6 +16,8 @@ var boxController = require('../controllers/boxController');
 
 // factory es la callback function del controller
 router.get('/', boxController.boxAPI.factory);
-router.get('/createmeeseeks', boxController.boxAPI.createMeeseeks);
+router.get('/createMeeseeks', boxController.boxAPI.createMeeseeks);
+
+router.get('/getMeeseeks/:position', boxController.boxAPI.getMeeseeks);
 
 module.exports = router;

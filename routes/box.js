@@ -13,6 +13,8 @@ var boxController = require('../controllers/boxController');
  * en el middleware use().
  */
 
+
+// factory es la callback function del controller
 router.get('/', boxController.factory);
 
 module.exports = router;

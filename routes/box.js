@@ -29,11 +29,16 @@ router.use(function (req, res, next) {
 // Encapsulamos las callbacks functions en el modulo controller
 router.get('/', boxController.boxAPI.factory);
 
-// create (put)
+// create meeseeks
 router.get('/pressButton', boxController.boxAPI.createMeeseeks);
 
 // get one
 router.get('/getMeeseeks/:position', boxController.boxAPI.getMeeseeks);
 
+// create box
+router.get('/factory', boxController.boxAPI.factory);
+
+// delete boxes
+router.get('/delete', boxController.boxAPI.deleteBox);
 
 module.exports = router;

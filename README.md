@@ -357,6 +357,12 @@ The devstart and serverstart scripts can be used to start the same ./bin/www fil
 
 ### The generated project
 
+
+Aquí el repo del proyecto ejemplo de Mozilla MZDN:
+
+https://github.com/mdn/express-locallibrary-tutorial 
+
+
 #### Directory structure
 
  The package.json file defines the application dependencies and other information. It also defines a startup script that will call the application **entry point**, the JavaScript file /bin/www. This sets up some of the application error handling and then **loads app.js** to do the rest of the work. The **app routes are stored in separate modules under the routes/ directory**. The **templates** are stored under the /views directory. 
@@ -481,4 +487,51 @@ El "oficial" de github:
 https://github.com/github/gitignore/blob/master/Node.gitignore
 
 El directorio `node_modules` es el que obviamente queda sin seguimiento.
+
+
+## Conexión a BBDD
+
+### Install Mongoose
+
+Install Mongoose (and its dependencies) and add it to your `package.json` file:
+
+> npm install mongoose
+
+Open `/app.js` (in the root of your project) and copy the following text below where you declare the Express application object (after the line var app = express();). 
+
+Esta sintaxis es de Node.
+
+    //Set up mongoose connection
+    var mongoose = require('mongoose');
+    var mongoDB = 'insert_your_database_url_here';
+    mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+
+### Defining the Schema(s)
+
+We will define a separate module for each model. 
+Start by creating a folder for our models in the project root (/models) and then create separate files for each of the models. Example:
+
+/express-locallibrary-tutorial  //the project root
+  /models
+    author.js
+    book.js
+    bookinstance.js
+    genre.js
+
+Definimos el schema de mrmeeseeks. 
+
+Echarle un ojo a los **tipos** de los schemas:
+
+https://mongoosejs.com/docs/schematypes.html 
+
+Aquí los **validators** para validar los datos definidos en el schema:
+
+https://mongoosejs.com/docs/validation.html
+
+Validation is middleware. Mongoose registers validation as a pre('save') hook on every schema by default.
+
+Sólo hay built-in validators para `Number` y `String`
 

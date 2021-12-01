@@ -1,10 +1,11 @@
-
+/**
+ * Box Routes
+ */
 var express = require('express');
 var router = express.Router();
 
-// Require controller modules
+// Controller module includes callbacks functions
 var boxController = require('../controllers/boxController');
-
 
 // ROUTER LEVEL MIDDLEWARE
 
@@ -25,9 +26,14 @@ router.use(function (req, res, next) {
 
 
 // factory es la callback function del controller
+// Encapsulamos las callbacks functions en el modulo controller
 router.get('/', boxController.boxAPI.factory);
-router.get('/createMeeseeks', boxController.boxAPI.createMeeseeks);
 
+// create (put)
+router.get('/pressButton', boxController.boxAPI.createMeeseeks);
+
+// get one
 router.get('/getMeeseeks/:position', boxController.boxAPI.getMeeseeks);
+
 
 module.exports = router;

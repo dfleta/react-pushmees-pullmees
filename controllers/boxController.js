@@ -1,5 +1,6 @@
 const importaBox = require('../domain/box');
 const Meeseeks = require('../models/meeseeks');
+const Boxes = require('../models/boxes');
 
 /**
  * Callbacks functions para el controller Box
@@ -18,12 +19,39 @@ var boxAPI = (function singleController() {
 
     let reality = [];
     let box = importaBox.singletonBox.getBox();
+    // el primer meeseeks es el prototipo
+    box.pressButton(reality);
 
     // get a meeseeks box
 
     const factory = function(req, res) {
         // res.send('NOT IMPLEMENTED: Meeseeks Box');
-        res.status(200).type('json').json(box);
+
+        // box tiene una referencia onetoone a un meeseeks
+        // Ese meeseeks ha de existir en la bbdd
+        // Crearlo primero y relacionarlo con box
+        // por la _id que MongoDB asigna al doc meeseeks
+        // en la bbdd 
+        let meeseeksInstance = new Meeseeks(
+            box.getProtoMeeseks()
+        );
+
+        meeseeksInstance.save(function (err) {
+            if (err) return handleError(err);
+        });
+
+        let boxInstance = new Boxes(
+            {
+                name: box.name,
+                mrMeeseeks: meeseeksInstance._id
+            }
+        );
+
+        boxInstance.save(function (err) {
+            if (err) return handleError(err);
+        });
+        
+        res.status(200).type('json').json(boxInstance);
     }
     
     // get a meeseeks
@@ -35,17 +63,14 @@ var boxAPI = (function singleController() {
 
         // a la bbdd
         let meeseeksInstance = new Meeseeks(
-            {  // meeseeksSchema
-               messageOnCreate: box.getProtoMeeseks().messageOnCreate,
-               messageOnRequest: box.getProtoMeeseks().messageOnRequest              
-            }
+            box.getProtoMeeseks()
         );
 
         meeseeksInstance.save(function (err) {
             if (err) return handleError(err);
         });
 
-        res.status(200).type('json').json(box.getProtoMeeseks());
+        res.status(200).type('json').json(meeseeksInstance);
     }
 
     // get meeseeks por parametro

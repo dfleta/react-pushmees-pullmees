@@ -97,12 +97,22 @@ var boxAPI = (function singleController() {
             res.status(200).type('json').json({messageOnCreate: hi, messageOnRequest: greetings});
         } 
     }
+
+    const deleteBox = ( (req, res) => {
+        Boxes.deleteMany()
+            .exec(function (err, deletedCount) {
+                if (err) { return next(err); }
+                // Successful, so render.
+                res.status(200).type('json').json(deletedCount);
+            })
+    })
     
     // public API
     return {
         factory,
         createMeeseeks,
-        getMeeseeks
+        getMeeseeks,
+        deleteBox
     };
 })(); 
 

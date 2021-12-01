@@ -24,7 +24,7 @@
             .exec(function (err, deletedCount) {
                 if (err) { return next(err); }
                 // Successful, so render.
-                res.status(204).type('json').json(deletedCount);
+                res.status(200).type('json').json(deletedCount);
             })
     });
     

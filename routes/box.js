@@ -38,5 +38,7 @@ router.get('/getMeeseeks/:position', boxController.boxAPI.getMeeseeks);
 // create box
 router.get('/factory', boxController.boxAPI.factory);
 
+// delete boxes
+router.get('/delete', boxController.boxAPI.deleteBox);
 
 module.exports = router;

@@ -535,3 +535,17 @@ Validation is middleware. Mongoose registers validation as a pre('save') hook on
 
 Sólo hay built-in validators para `Number` y `String`
 
+## Seguridad
+
+EnvironmentVariables in Ubuntu:
+
+https://help.ubuntu.com/community/EnvironmentVariables
+
+How to read environment variables from Node.js
+
+https://nodejs.dev/learn/how-to-read-environment-variables-from-nodejs
+
+
+template literals:
+
+https://novatfe.com/es/evento/20-que-es-la-impresion-en-3d-y-sus-aplicaciones

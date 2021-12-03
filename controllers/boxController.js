@@ -42,7 +42,7 @@ var boxAPI = (function singleController() {
 
         let boxInstance = new Boxes(
             {
-                name: box.name,
+                name: `${req.params.peopleName}'s box`,
                 mrMeeseeks: meeseeksInstance._id
             }
         );

@@ -28,7 +28,7 @@ router.use(function (req, res, next) {
 // factory es la callback function del controller
 // Encapsulamos las callbacks functions en el modulo controller
 // create box
-router.get('/factory', boxController.boxAPI.factory);
+router.get('/factory/:peopleName', boxController.boxAPI.factory);
 
 // create meeseeks
 router.get('/pressButton', boxController.boxAPI.createMeeseeks);

@@ -33,14 +33,17 @@ router.get('/factory/:owner', boxController.boxAPI.factory);
 // create meeseeks
 router.get('/pressButton', boxController.boxAPI.createMeeseeks);
 
-// get one
+// get one meeseks
 router.get('/getMeeseeks/:position', boxController.boxAPI.getMeeseeks);
 
-// delete boxes
+// get owner box
+router.get('/:owner', boxController.boxAPI.getBox);
+
+// delete owner box
 router.get('/delete/:owner', boxController.boxAPI.deleteBox);
 
-// get boxes
-router.get('/all', boxController.boxAPI.getBox);
+// get all boxes
+router.get('/all', boxController.boxAPI.getAllBoxes);
 
 
 module.exports = router;

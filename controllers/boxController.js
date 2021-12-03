@@ -98,6 +98,15 @@ var boxAPI = (function singleController() {
         } 
     }
 
+    const getBox = ( (req, res) => {
+        Boxes.findOne({ 'name': `${req.params.owner}'s box` })
+            .exec(function (err, box) {
+                if (err) { return next(err); }
+                // Successful, so render.
+                res.status(200).type('json').json(box);
+        })
+    })
+
     const deleteBox = ( (req, res) => {
         Boxes.deleteOne({ 'name': `${req.params.owner}'s box` })
             .exec(function (err, deletedCount) {
@@ -121,8 +130,9 @@ var boxAPI = (function singleController() {
         factory,
         createMeeseeks,
         getMeeseeks,
+        getBox,
         deleteBox,
-        getBox: getAllBoxes
+        getAllBoxes: getAllBoxes
     };
 })(); 
 

@@ -107,7 +107,7 @@ var boxAPI = (function singleController() {
             })
     })
 
-    const getBox = ( (req, res) => {
+    const getAllBoxes = ( (req, res) => {
         Boxes.find()
             .exec(function (err, boxes) {
                 if (err) { return next(err); }
@@ -122,7 +122,7 @@ var boxAPI = (function singleController() {
         createMeeseeks,
         getMeeseeks,
         deleteBox,
-        getBox
+        getBox: getAllBoxes
     };
 })(); 
 

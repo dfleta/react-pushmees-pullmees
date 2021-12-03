@@ -43,7 +43,7 @@ router.get('/:owner', boxController.boxAPI.getBox);
 router.get('/delete/:owner', boxController.boxAPI.deleteBox);
 
 // get all boxes
-router.get('/all', boxController.boxAPI.getAllBoxes);
+router.get('/', boxController.boxAPI.getAllBoxes);
 
 
 module.exports = router;

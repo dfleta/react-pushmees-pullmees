@@ -42,7 +42,7 @@ var boxAPI = (function singleController() {
 
         let boxInstance = new Boxes(
             {
-                name: `${req.params.peopleName}'s box`,
+                name: `${req.params.owner}'s box`,
                 mrMeeseeks: meeseeksInstance._id
             }
         );
@@ -99,7 +99,7 @@ var boxAPI = (function singleController() {
     }
 
     const deleteBox = ( (req, res) => {
-        Boxes.deleteMany()
+        Boxes.deleteOne({ 'name': `${req.params.owner}'s box` })
             .exec(function (err, deletedCount) {
                 if (err) { return next(err); }
                 // Successful, so render.

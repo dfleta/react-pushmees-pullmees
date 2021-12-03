@@ -27,7 +27,8 @@ router.use(function (req, res, next) {
 
 // factory es la callback function del controller
 // Encapsulamos las callbacks functions en el modulo controller
-router.get('/', boxController.boxAPI.factory);
+// create box
+router.get('/factory', boxController.boxAPI.factory);
 
 // create meeseeks
 router.get('/pressButton', boxController.boxAPI.createMeeseeks);
@@ -35,10 +36,11 @@ router.get('/pressButton', boxController.boxAPI.createMeeseeks);
 // get one
 router.get('/getMeeseeks/:position', boxController.boxAPI.getMeeseeks);
 
-// create box
-router.get('/factory', boxController.boxAPI.factory);
-
 // delete boxes
 router.get('/delete', boxController.boxAPI.deleteBox);
+
+// get boxes
+router.get('/all', boxController.boxAPI.getBox);
+
 
 module.exports = router;

@@ -545,7 +545,43 @@ How to read environment variables from Node.js
 
 https://nodejs.dev/learn/how-to-read-environment-variables-from-nodejs
 
-
 template literals:
 
 https://novatfe.com/es/evento/20-que-es-la-impresion-en-3d-y-sus-aplicaciones
+
+Encrypted password in `.env` or environment variables: 
+
+https://stackoverflow.com/questions/65564126/encrypt-passwords-stored-in-environment-variables
+
+### Solución I
+
+> $ sudo pico /etc/profile.d/development_env.sh
+> export ATLAS_USER="ollivanders"
+> export ATLAS_PASSWORD="ollivanders"
+
+Cerrar la sesión y volver a entrar para forzar la carga de las variables de entorno.
+
+Usar el paquete `process` de `node` para acceder al entorno y leer las variables en `app.js`
+
+> var mongoDB = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@cluster0-ud3ms.mongodb.net/pushmees_pullmees?retryWrites=true&w=majority`;
+
+De este modo, al menos puedo compartir con el alumnado el proyecto para que cambien 3 parámetros y a correr, y evito gestionar 2 ramas en el repo sólo para este fin.
+
+### Solucion II
+
+Fichero local .env con user y password encriptado. Sólo para desarrollo local. Si alguien accede al repo, lee la clave de encriptación... así que no se gana nada.
+
+
+> require('dotenv').config()
+
+> var CryptoJS = require("crypto-js");
+> var data = "password";
+>var encrypted = CryptoJS.AES.encrypt(data, "my-secret");
+> console.log(encrypted.toString());
+
+
+Aquí soluciones para la vida real:
+
+https://stackoverflow.com/questions/65564126/encrypt-passwords-stored-in-environment-variables
+
+

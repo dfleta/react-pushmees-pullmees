@@ -106,13 +106,23 @@ var boxAPI = (function singleController() {
                 res.status(200).type('json').json(deletedCount);
             })
     })
+
+    const getBox = ( (req, res) => {
+        Boxes.find()
+            .exec(function (err, boxes) {
+                if (err) { return next(err); }
+                // Successful, so render.
+                res.status(200).type('json').json(boxes);
+            })
+    })
     
     // public API
     return {
         factory,
         createMeeseeks,
         getMeeseeks,
-        deleteBox
+        deleteBox,
+        getBox
     };
 })(); 
 

@@ -11,7 +11,7 @@ const Boxes = require('../models/boxes');
  * simulando que de algún modo dispongo de una bbdd.
  * Esto no es stateless por lo que 
  * estoy cargándome el RESTFULL...
- * hasta que implemente la bbdd.
+ * hasta que implementé la bbdd.
  */
 
 
@@ -61,9 +61,21 @@ var boxAPI = (function singleController() {
         box.pressButton(reality);
         console.log("reality length = ", reality.length);
 
+        // destructuring
+        // Utilizo destructurig para forzar la busqueda en
+        // la cadena de prototipos del objeto MrMeeseeks {} 
+        // de sus propiedades message. Lo que hay en 
+        // reality es un objeto sin own properties 
+        // MrMeeseeks {} cuyo prototipo es el objeto
+        // que está en la propiedad this.mrMeeseeks
+        // de box
+        let {messageOnCreate: hi, messageOnRequest: greetings} = reality.pop();
+
         // a la bbdd
         let meeseeksInstance = new Meeseeks(
-            box.getProtoMeeseks()
+            {   messageOnCreate: hi, 
+                messageOnRequest: greetings
+            }
         );
 
         meeseeksInstance.save(function (err) {

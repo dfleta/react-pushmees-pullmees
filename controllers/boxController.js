@@ -98,15 +98,6 @@ var boxAPI = (function singleController() {
         } 
     }
 
-    const explode = function(req, res) {
-        Meeseeks.findByIdAndDelete(req.params.id)
-            .exec(function (err, mees) {
-                if (err) { return next(err); }
-                // console.log(mees._id.toString());
-                res.status(200).type('json').json(mees);
-            })
-    }
-
     const getBox = ( (req, res) => {
         Boxes.findOne({ 'name': `${req.params.owner}'s box` })
             .exec(function (err, box) {
@@ -120,7 +111,7 @@ var boxAPI = (function singleController() {
         Boxes.findOneAndDelete({ 'name': `${req.params.owner}'s box` })
             .exec(function (err, deletedBox) {
                 if (err) { return next(err); }
-                res.redirect('/box/explode/' + deletedBox.mrMeeseeks._id.toString());
+                res.redirect('/reality/explode/' + deletedBox.mrMeeseeks._id.toString());
             })
     }
 
@@ -138,7 +129,6 @@ var boxAPI = (function singleController() {
         factory,
         createMeeseeks,
         getMeeseeks,
-        explode,
         getBox,
         deleteBox,
         getAllBoxes

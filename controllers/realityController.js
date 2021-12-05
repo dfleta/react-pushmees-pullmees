@@ -27,11 +27,21 @@
                 res.status(200).type('json').json(deletedCount);
             })
     });
+
+    const explode = function(req, res) {
+        Meeseeks.findByIdAndDelete(req.params.id)
+            .exec(function (err, mees) {
+                if (err) { return next(err); }
+                console.log(mees._id.toString());
+                res.status(200).type('json').json(mees);
+            })
+    }
     
     // public API
     return {
         getReality,
-        deleteReality
+        deleteReality,
+        explode
     };
 })(); 
 

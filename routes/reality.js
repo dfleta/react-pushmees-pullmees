@@ -27,4 +27,7 @@ router.get('/', realityController.realityAPI.getReality);
 // delete all, get /reality/delete
 router.get('/delete', realityController.realityAPI.deleteReality);
 
+// explode meeseeks by id  /reality/explode/:id
+router.get('/explode/:id', realityController.realityAPI.explode);
+
 module.exports = router;

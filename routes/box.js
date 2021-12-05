@@ -36,9 +36,6 @@ router.get('/pressButton', boxController.boxAPI.createMeeseeks);
 // get one meeseks
 router.get('/getMeeseeks/:position', boxController.boxAPI.getMeeseeks);
 
-// delete meeseeks
-router.get('/explode/:id', boxController.boxAPI.explode);
-
 // get owner box
 router.get('/:owner', boxController.boxAPI.getBox);
 

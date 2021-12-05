@@ -38,19 +38,21 @@
     }
 
     const getMeeseeks = function(req, res) {
-        // => validacion pendiente middleware pre 
-        // if (reality.length == 0 || req.params.position >= reality.length) {
-        let index = req.params.position;
+        if (req.params.position  <= 0) {
+            res.status(200).type('json').json({});
+        }
         Meeseeks.find()
             .sort({$natural:1})
-            .skip(index -1)
+            .skip(req.params.position -1)
             .limit(1)
-            .select('_id messageOnCreate')
+            //.select('_id messageOnCreate') => al pre middleware
             .exec(function (err, mees) {
-                    if (err) { return next(err); }
-                    // Successful, so render.
-                    res.status(200).type('json').json(mees);
-                });
+                // añadir un pre middleware obliga
+                // a eliminar next(err) e implementarlo
+                if (err) { return "ups!"; }
+                // Successful, so render.
+                res.status(200).type('json').json(mees);
+            });
     }
     
     // public API

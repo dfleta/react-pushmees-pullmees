@@ -11,7 +11,7 @@ var boxController = require('../controllers/boxController');
 
 router.use(function (req, res, next) {
     console.log(req.url);
-    console.log(req.body);
+    console.log(req.params);
 
     next();
   })
@@ -35,6 +35,9 @@ router.get('/pressButton', boxController.boxAPI.createMeeseeks);
 
 // get one meeseks
 router.get('/getMeeseeks/:position', boxController.boxAPI.getMeeseeks);
+
+// delete meeseeks
+router.get('/explode/:id', boxController.boxAPI.explode);
 
 // get owner box
 router.get('/:owner', boxController.boxAPI.getBox);

@@ -30,4 +30,7 @@ router.get('/delete', realityController.realityAPI.deleteReality);
 // explode meeseeks by id  /reality/explode/:id
 router.get('/explode/:id', realityController.realityAPI.explode);
 
+// get one meeseks
+router.get('/getMeeseeks/:position', realityController.realityAPI.getMeeseeks);
+
 module.exports = router;

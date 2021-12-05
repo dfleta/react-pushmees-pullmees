@@ -36,12 +36,29 @@
                 res.status(200).type('json').json(mees);
             })
     }
+
+    const getMeeseeks = function(req, res) {
+        // => validacion pendiente middleware pre 
+        // if (reality.length == 0 || req.params.position >= reality.length) {
+        let index = req.params.position;
+        Meeseeks.find()
+            .sort({$natural:1})
+            .skip(index -1)
+            .limit(1)
+            .select('_id messageOnCreate')
+            .exec(function (err, mees) {
+                    if (err) { return next(err); }
+                    // Successful, so render.
+                    res.status(200).type('json').json(mees);
+                });
+    }
     
     // public API
     return {
         getReality,
         deleteReality,
-        explode
+        explode,
+        getMeeseeks
     };
 })(); 
 

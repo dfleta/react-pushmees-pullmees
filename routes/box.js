@@ -33,9 +33,6 @@ router.get('/factory/:owner', boxController.boxAPI.factory);
 // create meeseeks
 router.get('/pressButton', boxController.boxAPI.createMeeseeks);
 
-// get one meeseks
-router.get('/getMeeseeks/:position', boxController.boxAPI.getMeeseeks);
-
 // get owner box
 router.get('/:owner', boxController.boxAPI.getBox);
 

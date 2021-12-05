@@ -87,29 +87,6 @@ var boxAPI = (function singleController() {
 
     // get meeseeks por parametro
 
-    const getMeeseeks = function(req, res) {
-        // res.send(req.params);
-        // Utilizo destructurig para forzar la busqueda en
-        // la cadena de prototipos del objeto MrMeeseeks {} 
-        // de sus propiedades message. Lo que hay en 
-        // reality es un objeto sin own properties 
-        // MrMeeseeks {} cuyo prototipo es el objeto
-        // que está en la propiedad this.mrMeeseeks
-        // de box
-        if (reality.length == 0 || req.params.position >= reality.length) {
-            Meeseeks.findOne()
-                .exec(function (err, mees) {
-                    if (err) { return next(err); }
-                    // Successful, so render.
-                    res.status(200).type('json').json(mees);
-                });
-        } else {
-            // destructuring
-            let {messageOnCreate: hi, messageOnRequest: greetings} = reality[req.params.position];
-            res.status(200).type('json').json({messageOnCreate: hi, messageOnRequest: greetings});
-        } 
-    }
-
     const getBox = ( (req, res) => {
         Boxes.findOne({ 'name': `${req.params.owner}'s box` })
             .exec(function (err, box) {
@@ -140,7 +117,6 @@ var boxAPI = (function singleController() {
     return {
         factory,
         createMeeseeks,
-        getMeeseeks,
         getBox,
         deleteBox,
         getAllBoxes

@@ -9,9 +9,14 @@ var logger = require('morgan');
  */
 
 var mongoose = require('mongoose');
-var mongoDB = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@cluster0-ud3ms.mongodb.net/pushmees_pullmees?retryWrites=true&w=majority`;
-mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
+
+const uri = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@cluster0-ud3ms.mongodb.net/pushmees_pullmees?retryWrites=true&w=majority`;
+
+// connect(uri, options)
+mongoose.connect(uri, { useNewUrlParser: true , useUnifiedTopology: true});
+
 var db = mongoose.connection;
+
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 /**
@@ -35,6 +40,9 @@ var realityRouter = require('./routes/reality');
  */
 
 var app = express();
+
+// testing purposes
+app.set('db', db);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -76,5 +84,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

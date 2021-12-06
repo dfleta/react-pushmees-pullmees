@@ -585,3 +585,32 @@ Aquí soluciones para la vida real:
 https://stackoverflow.com/questions/65564126/encrypt-passwords-stored-in-environment-variables
 
 
+## Testing
+
+supertest
+
+https://www.npmjs.com/package/supertest
+ 
+testing express framework with jest 
+
+https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/
+
+> npm install jest supertest --save-dev
+
+
+testing asyncronous code with promises
+
+https://jestjs.io/docs/asynchronous
+
+
+Testing con Jest y supertest, artículo y repo con ejemplos:
+
+https://dev.to/nedsoft/testing-nodejs-express-api-with-jest-and-supertest-1km6
+
+https://github.com/nedssoft/sequelize-with-postgres-tutorial/blob/master/tests/routes.test.js
+
+Vídeo:
+
+How to test MongoDB related functionality with Jest in TypeScript
+
+https://www.youtube.com/watch?v=4U1DXyZUw34

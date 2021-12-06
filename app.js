@@ -56,6 +56,10 @@ app.use('/users', usersRouter);
 app.use('/box', boxRouter);
 app.use('/reality', realityRouter);
 
+/**
+ * MIDDLEWARE Error handling
+ */
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -11,7 +11,14 @@
             // recogemos en reality el contenido 
             // de la colección meeseeks de MongoDB
             .exec(function (err, reality) {
-                if (err) { return next(err); }
+                // Los errores de las funciones asincronas
+                // se pasan al middleware de express invocando
+                // a next(err)
+                // El middleware esta en app.use()
+                // Es nuestra responsabilidad manejar
+                // los errores producidos por funciones
+                // asincronas
+                if (err) { return next(err); } // Pass errors to Express.
                 // Successful, so render.
                 res.status(200).type('json').json(reality);
             })
@@ -23,7 +30,6 @@
         Meeseeks.deleteMany()
             .exec(function (err, deletedCount) {
                 if (err) { return next(err); }
-                // Successful, so render.
                 res.status(200).type('json').json(deletedCount);
             })
     });
@@ -37,20 +43,17 @@
             })
     }
 
-    const getMeeseeks = function(req, res) {
-        if (req.params.position  <= 0) {
+    const getMeeseeks = function(req, res, next) {
+        if (req.params.position <= 0) {
             res.status(200).type('json').json({});
         }
         Meeseeks.find()
             .sort({$natural:1})
             .skip(req.params.position -1)
             .limit(1)
-            //.select('_id messageOnCreate') => al pre middleware
+            //.select('_id messageOnCreate') => al pre middleware de find en schema
             .exec(function (err, mees) {
-                // añadir un pre middleware obliga
-                // a eliminar next(err) e implementarlo
-                if (err) { return "ups!"; }
-                // Successful, so render.
+                if (err) { return next(err); }
                 res.status(200).type('json').json(mees);
             });
     }

@@ -24,20 +24,20 @@ var boxAPI = (function singleController() {
 
     // get a meeseeks box
 
-    const factory = function(req, res) {
-        // res.send('NOT IMPLEMENTED: Meeseeks Box');
-
+    const factory = function(req, res, next) {
         // box tiene una referencia onetoone a un meeseeks
         // Ese meeseeks ha de existir en la bbdd
         // Crearlo primero y relacionarlo con box
         // por la _id que MongoDB asigna al doc meeseeks
         // en la bbdd 
         let meeseeksInstance = new Meeseeks(
+            // dentro de new Meeseeks
+            // this no es boxAPI !!
             box.getProtoMeeseks()
         );
 
         meeseeksInstance.save(function (err) {
-            if (err) return handleError(err);
+            if (err) return next(err);
         });
 
         let boxInstance = new Boxes(
@@ -56,8 +56,7 @@ var boxAPI = (function singleController() {
     
     // get a meeseeks
     
-    const createMeeseeks = function(req, res) {
-        // res.send('NOT IMPLEMENTED: Create meeseeks');
+    const createMeeseeks = function(req, res, next) {
         box.pressButton(reality);
         console.log("reality length = ", reality.length);
 
@@ -73,13 +72,14 @@ var boxAPI = (function singleController() {
 
         // a la bbdd
         let meeseeksInstance = new Meeseeks(
-            {   messageOnCreate: hi, 
+            {   
+                messageOnCreate: hi, 
                 messageOnRequest: greetings
             }
         );
 
         meeseeksInstance.save(function (err) {
-            if (err) return handleError(err);
+            if (err) return next(err);
         });
 
         res.status(200).type('json').json(meeseeksInstance);
@@ -87,7 +87,7 @@ var boxAPI = (function singleController() {
 
     // get meeseeks por parametro
 
-    const getBox = ( (req, res) => {
+    const getBox = ( (req, res, next) => {
         Boxes.findOne({ 'name': `${req.params.owner}'s box` })
             .exec(function (err, box) {
                 if (err) { return next(err); }
@@ -96,7 +96,7 @@ var boxAPI = (function singleController() {
         })
     })
 
-    const deleteBox = async function(req, res) {
+    const deleteBox = async function(req, res, next) {
         Boxes.findOneAndDelete({ 'name': `${req.params.owner}'s box` })
             .exec(function (err, deletedBox) {
                 if (err) { return next(err); }
@@ -104,11 +104,10 @@ var boxAPI = (function singleController() {
             })
     }
 
-    const getAllBoxes = ( (req, res) => {
+    const getAllBoxes = ( (req, res, next) => {
         Boxes.find()
             .exec(function (err, boxes) {
                 if (err) { return next(err); }
-                // Successful, so render.
                 res.status(200).type('json').json(boxes);
             })
     })

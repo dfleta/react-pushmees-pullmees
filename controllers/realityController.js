@@ -6,7 +6,7 @@
 
  var realityAPI = (function singleController() {
 
-    const getReality = function(req, res) {
+    const getReality = function(req, res, next) {
         Meeseeks.find()
             // recogemos en reality el contenido 
             // de la colección meeseeks de MongoDB
@@ -24,7 +24,7 @@
             })
     }
 
-    const deleteReality = ( (req,res) => {
+    const deleteReality = ( (req,res, next) => {
         // deleteMany() returns an object with the property
         // deletedCount containing the number of documents deleted
         Meeseeks.deleteMany()
@@ -34,7 +34,7 @@
             })
     });
 
-    const explode = function(req, res) {
+    const explode = function(req, res, next) {
         Meeseeks.findByIdAndDelete(req.params.id)
             .exec(function (err, mees) {
                 if (err) { return next(err); }

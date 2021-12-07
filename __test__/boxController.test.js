@@ -9,6 +9,8 @@ const { expect } = require('@jest/globals');
 const request = require('supertest');
 const app = require('../app');
 
+const db = require('../db/mongoConfig');
+
 /**
  * SCOPING
  * 
@@ -17,12 +19,13 @@ const app = require('../app');
 
 describe("Box Controller", () => {
 
-    afterAll( () => {
+    afterAll( async () => {
         // cierro la conexión a mongo
-        app.get('db').close();
+        // await app.get('db').close();
+        db.disconnect();
     })
 
-    // testing asyncronous code with promises
+    // testing de codigo asincrono con promesas
     test("Test getBox /box/:owner /", () => {
         let owner = 'jerry';
 

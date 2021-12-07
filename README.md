@@ -609,8 +609,32 @@ https://dev.to/nedsoft/testing-nodejs-express-api-with-jest-and-supertest-1km6
 
 https://github.com/nedssoft/sequelize-with-postgres-tutorial/blob/master/tests/routes.test.js
 
-Vídeo:
 
-How to test MongoDB related functionality with Jest in TypeScript
+Vídeo: How to test MongoDB related functionality with Jest in TypeScript
 
 https://www.youtube.com/watch?v=4U1DXyZUw34
+
+
+Connect to a MongoDB Database Using Node.js
+
+https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database
+
+Instalar cross-env para desde linea de comandos npm fijar la variable de entorno `NODE_ENV` en `package.json`:
+
+> "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles"
+
+NODE_ENV=development
+NODE_ENV=production
+NODE_ENV=test
+
+> npm install cross-env --save-dev
+
+
+Al correr los test ejecutar la opción de `jest --detectOpenHandles` para averiguar si hay conexiones o tareas asíncronas por manejar que impidan la salida de los tests:
+
+> "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles
+
+## GraphQL
+
+
+https://dev.to/nedsoft/build-api-with-graphql-node-js-and-sequelize-5e8e

@@ -38,9 +38,10 @@ describe("Box Controller", () => {
                     expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
                     expect(res.statusCode).toEqual(200);
                     expect(res.body).toHaveProperty('_id', 'name', 'mrMeeseeks');
-                    expect(res.body.name).toEqual(expect.stringMatching("jerry"));
+                    expect(res.body.name).toEqual(expect.stringMatching('jerry'));
                     expect(res.body._id).not.toBeFalsy();
                     expect(res.body.mrMeeseeks).not.toBeFalsy();
+                    expect(res.body.mrMeeseeks).toBe('61ad67901dddd599e1d31e9d');
                 })
     });
 
@@ -50,7 +51,7 @@ describe("Box Controller", () => {
                 .then(res => {
                     expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
                     expect(res.statusCode).toEqual(200);
-                    expect(res.body).toHaveLength(1);
+                    expect(res.body).toHaveLength(3);
                     expect(res.body[0]).toHaveProperty('_id', 'name', 'mrMeeseeks');
                     expect(res.body[0]._id).not.toBeFalsy();
                     expect(res.body[0].mrMeeseeks).not.toBeFalsy();

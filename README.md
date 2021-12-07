@@ -634,6 +634,11 @@ Al correr los test ejecutar la opción de `jest --detectOpenHandles` para averig
 
 > "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles
 
+
+### Setup de la bbdd MongoDB
+
+https://docs.mongodb.com/drivers/node/current/quick-start/
+
 ## GraphQL
 
 

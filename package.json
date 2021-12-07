@@ -6,7 +6,10 @@
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "serverstart": "cross-env NODE_ENV=development DEBUG=pushmees_pullmeesh:* npm run devstart",
-    "test": "cross-env NODE_ENV=test jest --runInBand"
+    "migrate": "node ./db/migrate.js",
+    "pretest": "cross-env NODE_ENV=test npm run migrate",
+    "test": "cross-env NODE_ENV=test jest --runInBand",
+    "pulltest": "cross-env NODE_ENV=test jest --runInBand"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

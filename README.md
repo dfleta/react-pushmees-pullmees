@@ -585,3 +585,71 @@ Aquí soluciones para la vida real:
 https://stackoverflow.com/questions/65564126/encrypt-passwords-stored-in-environment-variables
 
 
+## Testing
+
+supertest
+
+https://www.npmjs.com/package/supertest
+ 
+testing express framework with jest 
+
+https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/
+
+> npm install jest supertest --save-dev
+
+
+testing asyncronous code with promises
+
+https://jestjs.io/docs/asynchronous
+
+
+Testing con Jest y supertest, artículo y repo con ejemplos:
+
+https://dev.to/nedsoft/testing-nodejs-express-api-with-jest-and-supertest-1km6
+
+https://github.com/nedssoft/sequelize-with-postgres-tutorial/blob/master/tests/routes.test.js
+
+
+Vídeo: How to test MongoDB related functionality with Jest in TypeScript
+
+https://www.youtube.com/watch?v=4U1DXyZUw34
+
+
+Connect to a MongoDB Database Using Node.js
+
+https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database
+
+Instalar cross-env para desde linea de comandos npm fijar la variable de entorno `NODE_ENV` en `package.json`:
+
+> "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles"
+
+NODE_ENV=development
+NODE_ENV=production
+NODE_ENV=test
+
+> npm install cross-env --save-dev
+
+
+Al correr los test ejecutar la opción de `jest --detectOpenHandles` para averiguar si hay conexiones o tareas asíncronas por manejar que impidan la salida de los tests:
+
+> "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles
+
+
+### Setup de la bbdd MongoDB
+
+https://docs.mongodb.com/drivers/node/current/quick-start/
+
+ lo guay seria tener dos bases de datos
+ una para prod y otra para test como en quarkus
+ y arrancar segun var env
+ sequelize tiene un script para migrar 
+ y resetear la bbdd
+ mongo tb?
+ en teoria eso lo deberia hacer mongoose
+ que no tiene una cli como sequelize y por tanto
+ no puedo lanzarl con npm script pretest y migrate
+
+## GraphQL
+
+
+https://dev.to/nedsoft/build-api-with-graphql-node-js-and-sequelize-5e8e

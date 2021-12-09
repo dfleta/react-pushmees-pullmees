@@ -1,6 +1,7 @@
 const importaBox = require('../domain/box');
 const Meeseeks = require('../models/meeseeks');
 const Boxes = require('../models/boxes');
+const meeseeks = require('../models/meeseeks');
 
 /**
  * Callbacks functions para el controller Box
@@ -89,18 +90,34 @@ var boxAPI = (function singleController() {
 
     const getBox = ( (req, res, next) => {
         Boxes.findOne({ 'name': `${req.params.owner}'s box` })
-            .exec(function (err, box) {
+            .exec(function (err, ownerBox) {
                 if (err) { return next(err); }
                 // Successful, so render.
-                res.status(200).type('json').json(box);
+                res.status(200).type('json').json(ownerBox);
         })
     })
 
-    const deleteBox = async function(req, res, next) {
+    const deleteBox = function(req, res, next) {
+        // los metodos de moongoose elegidos se basan en poder lanzar
+        // el middleware de mongoose en pre y post y si el middleware
+        // se ejecuta en la query o en el documento.
+        // Ver modelo de Boxes.
+        // findOneAndDelete dispara el middleware post del mismo nombre.
+        // Quiero implementar un CASCADE de SQL.
+        // Uso el middleware post para eliminar
+        // el documento meeseeks que referencia la box a eliminar
+        // Ver en el hook en modelo boxes
         Boxes.findOneAndDelete({ 'name': `${req.params.owner}'s box` })
+            // Finds a matching document, removes it, and passes 
+            // the found document (if any) to the callback.
             .exec(function (err, deletedBox) {
                 if (err) { return next(err); }
-                res.redirect('/reality/explode/' + deletedBox.mrMeeseeks._id.toString());
+                console.log("deletedMees = " + deletedBox.mrMeeseeks._id.toString())
+                res.status(200).type('json').json(deletedBox);
+                // uso middleware post de mongoose y no redirect
+                // porque redirect no termina antes de que termine
+                // el caso test de Jest. 
+                //res.redirect('/reality/explode/' + deletedBox.mrMeeseeks._id.toString());
             })
     }
 

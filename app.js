@@ -6,12 +6,24 @@ var logger = require('morgan');
 
 /**
  * setup MongoDB database connection
+ * 
+ * Muevo la configuracion de la conexion a la bbdd
+ * a un modulo para reutilizarlo en los test
+ * y poder elegir que base de datos uso:
+ * production, development o test 
+ * 
+ *    var mongoose = require('mongoose');
+ *    const uri = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@cluster0-ud3ms. 
+ *    mongodb.net/pushmees_pullmees?retryWrites=true&w=majority`;
+ *    mongoose.connect(uri, { useNewUrlParser: true , useUnifiedTopology: true});
+ *    var db = mongoose.connection;
  */
 
-var mongoose = require('mongoose');
-var mongoDB = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@cluster0-ud3ms.mongodb.net/pushmees_pullmees?retryWrites=true&w=majority`;
-mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
-var db = mongoose.connection;
+var mongoConfig = require('./db/mongoConfig');
+mongoConfig.connect();
+
+// connection es el constructor de la conexion
+var db = mongoConfig.mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 /**
@@ -35,6 +47,9 @@ var realityRouter = require('./routes/reality');
  */
 
 var app = express();
+
+// testing purposes
+// app.set('db', db);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -76,5 +91,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

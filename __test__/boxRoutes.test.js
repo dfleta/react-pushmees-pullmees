@@ -17,7 +17,7 @@ const db = require('../db/mongoConfig');
  * SETUP y TEARDOWN
  */ 
 
-describe("Box Controller", () => {
+describe("Box Routes", () => {
 
     afterAll( async () => {
         // cierro la conexión a mongo
@@ -27,10 +27,9 @@ describe("Box Controller", () => {
 
     // testing de codigo asincrono con promesas
     test("Test getBox /box/:owner /", () => {
+        // sintaxis alternativa con supertest
+        // Uso la de jest con codigo asincrono con promesas
         let owner = 'jerry';
-
-        // sintaxis alternativa tipo supertest https://www.npmjs.com/package/supertest
-        // uso la de jest con codigo asincrono con promesas
         return request(app)
                 .get(`/box/${owner}`)
                 .then(res => {
@@ -58,14 +57,29 @@ describe("Box Controller", () => {
                 });
     });
 
-      // lo guay seria tener dos bases de datos
-      // una para prod y otra para test como en quarkus
-      // y arrancar segun var env
-      // sequelize tiene un script para migrar 
-      // y resetear la bbdd
-      // mongo tb?
-      // en teoria eso lo deberia hacer mongoose
-      // que no tiene una cli como sequelize y por tanto
-      // no puedo lanzarl con npm script pretest y migrate
+    test("Test pressButton /box/pressbutton", () => {
+        return request(app)
+              .get('/box/pressbutton')
+              .then(res => {
+                  expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
+                  expect(res.statusCode).toEqual(200);
+                  expect(res.body).toHaveProperty('_id', 'messageOnCreate', 'messageOnRequest');
+                  expect(res.body._id).not.toBeFalsy();
+                  expect(res.body.messageOnRequest).toHaveLength(3);
+                  expect(res.body.messageOnRequest[0]).toEqual(expect.stringMatching('Oooh yeah! Can do!'))
+              });
+    });
 
+    test("Test delete box /box/delete/:owner", () => {
+        let owner = "summer";
+        return request(app)
+              .get(`/box/delete/${owner}`)
+              .then(res => {
+                  expect(res.get('Content-Type')).toEqual(expect.stringMatching('/json'));
+                  expect(res.statusCode).toEqual(200);
+                  expect(res.body).toHaveProperty('_id', 'messageOnCreate', 'messageOnRequest');
+                  expect(res.body._id).toBe('61b0f62a88d0be4b41bc1003');
+                  expect(res.body.mrMeeseeks).toBe('61aeab0c01ea7ea815ca8259');
+              });
+    }, 10000); // setTimeOut
 });

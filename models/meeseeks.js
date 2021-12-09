@@ -23,12 +23,14 @@ var meeseeksSchema = new Schema(
 );
 
 // pre middleware
-// se ejecuta una vez que la query find()
+// se ejecuta una vez que la query 
+// find() o findOneAndDelete
 // esta formada, antes de su exec()
 // por lo que tenemos acceso a los 
 // parametros de la query
-meeseeksSchema.pre('find', function() {
+meeseeksSchema.pre(['find', 'findOneAndDelete'], function() {
     // this instanceof mongoose.Query
+    // this se refiere a la query, no al documento, en este caso.
     // No debemos intentar acceder al objeto
     // req de express porque acoplamos
     // acceso a datos y controller...
@@ -37,7 +39,7 @@ meeseeksSchema.pre('find', function() {
     // a todos los parametros de la query
 
     // al filtrar los meeseeks con un find()
-    // solo ofrezco su id y saludo 
+    // solo sirvo su id y saludo 
     this.select('_id messageOnCreate');
 
     // next() es opcional

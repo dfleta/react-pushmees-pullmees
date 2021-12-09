@@ -639,6 +639,16 @@ Al correr los test ejecutar la opción de `jest --detectOpenHandles` para averig
 
 https://docs.mongodb.com/drivers/node/current/quick-start/
 
+ lo guay seria tener dos bases de datos
+ una para prod y otra para test como en quarkus
+ y arrancar segun var env
+ sequelize tiene un script para migrar 
+ y resetear la bbdd
+ mongo tb?
+ en teoria eso lo deberia hacer mongoose
+ que no tiene una cli como sequelize y por tanto
+ no puedo lanzarl con npm script pretest y migrate
+
 ## GraphQL
 
 

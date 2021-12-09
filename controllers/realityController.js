@@ -7,6 +7,8 @@
  var realityAPI = (function singleController() {
 
     const getReality = function(req, res, next) {
+        // disparo el middleware pre find
+        // en el modelo meeseeks
         Meeseeks.find()
             // recogemos en reality el contenido 
             // de la colección meeseeks de MongoDB
@@ -35,7 +37,13 @@
     });
 
     const explode = function(req, res, next) {
-        Meeseeks.findByIdAndDelete(req.params.id)
+        // los metodos de moongoose elegidos
+        // se basan en poder lanzar el middleware
+        // de mongoose en pre y post 
+        // y si el middleware ejecuta en 
+        // la query o en el post
+        // Ver modelo de Meeseeks
+        Meeseeks.findOneAndDelete({ _id: req.params.id })
             .exec(function (err, mees) {
                 if (err) { return next(err); }
                 console.log(mees._id.toString());

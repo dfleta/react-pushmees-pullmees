@@ -653,3 +653,48 @@ https://docs.mongodb.com/drivers/node/current/quick-start/
 
 
 https://dev.to/nedsoft/build-api-with-graphql-node-js-and-sequelize-5e8e
+
+
+## Docker
+
+Dockerfile
+
+```Dockerfile
+FROM node:lts-alpine
+ENV NODE_ENV=production
+ENV ATLAS_USER="ollivanders"
+ENV ATLAS_PASSWORD="ollivanders"
+WORKDIR /usr/src/app
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN npm install --production --silent && mv node_modules ../
+COPY . .
+EXPOSE 3000
+RUN chown -R node /usr/src/app
+USER node
+CMD ["npm", "start"]
+```
+
+Creo la imagen:
+
+`$ docker build -t push_mees .`
+
+Creo el contenedor y ejecutarlo:
+
+`$ docker run -dp 3000:3000 push_mees:latest`
+
+Compruebo si `COPY` y `dockerignore` han hecho su trabajo y copiado sólo los componentes de la app:
+
+```sh
+$ docker exec -it optimistic_kapitsa sh
+/usr/src/app $ ls
+app.js             controllers        domain             package-lock.json  public             views
+bin                db                 models             package.json       routes
+```
+
+Para el contenedor:
+
+`$ docker stop name` 
+
+Ponlo en marcha:
+
+`$ docker stop name`

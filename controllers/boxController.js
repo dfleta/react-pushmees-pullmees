@@ -117,7 +117,7 @@ var boxAPI = (function singleController() {
                 // uso middleware post de mongoose y no redirect
                 // porque redirect no termina antes de que termine
                 // el caso test de Jest. 
-                //res.redirect('/reality/explode/' + deletedBox.mrMeeseeks._id.toString());
+                // res.redirect('/reality/explode/' + deletedBox.mrMeeseeks._id.toString());
             })
     }
 

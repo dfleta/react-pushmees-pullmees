@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Meeseeks from './Meeseeks';
 
 function PressButton() {
@@ -19,7 +19,7 @@ function PressButton() {
                     {/* <Meeseeks value={data}/> */}
                     {/* <p>{!data ? "OKNOTOK" : data.messageOnCreate}</p>*/}
             </button>
-            { !meeseeks ? "reality" : meeseeks.map((item) => (<Meeseeks value={item}/> ) ) }
+            { !meeseeks ? "reality" : meeseeks.map((item) => (<Meeseeks value={item} key={item._id} /> ) ) }
         </div> 
     );
 }

@@ -1,6 +1,7 @@
 import './App.css';
 import Box from './components/Box'
 import React from 'react';
+import PressButton from './components/PressButton'
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Box value={"jerry"} />
+        <PressButton />
       </header>
     </div>
   );

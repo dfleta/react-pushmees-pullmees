@@ -6,12 +6,11 @@ import '../App.css';
 function Box(boxOwner) {
 
     // hook
-    const [data, setData] = React.useState(null);
+    const [box, setBox] = React.useState(null);
 
     React.useEffect(() => {
         fetch(`/box/${boxOwner.value}`)
-            .then((res) => res.json())
-            .then((box) => setData(box)) // pasar la propiedad o el objeto
+            .then((res) => setBox(res.json()))
             .catch(() => console.log("fetch box NOTOK"))
     }, [])
 
@@ -19,7 +18,7 @@ function Box(boxOwner) {
         <div className="Box">
             <header className="Box-header">
                 <img src={mees_box} className="App-logo" alt="mr meeseeks box" />
-                <p>{!data ? "OKNOTOK" : data.name}</p>
+                <p>{!box ? "OKNOTOK" : box.name}</p>
             </header>
         </div>
     );

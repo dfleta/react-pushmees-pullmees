@@ -12,6 +12,7 @@ function Box(boxOwner) {
         fetch(`/box/${boxOwner.value}`)
             .then((res) => res.json())
             .then((box) => setData(box)) // pasar la propiedad o el objeto
+            .catch(() => console.log("fetch box NOTOK"))
     }, [])
 
     return (

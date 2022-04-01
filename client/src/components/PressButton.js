@@ -7,9 +7,10 @@ function PressButton() {
     const [data, setData] = React.useState(null);
 
     React.useEffect(() => {
-        fetch("/box//pressButton")
+        fetch("/box/pressButton")
             .then((res) => res.json())
-            .then((mr_mees) => setData(mr_mees)) // pasar la propiedad o el objeto
+            .then((mr_mees) => setData(mr_mees))
+            .catch(() => console.log("pressButton NOTOK"))
     }, [])
 
     return (

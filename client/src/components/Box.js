@@ -1,4 +1,7 @@
 import React from 'react';
+import mees_box from '../images/mees_box.png';
+import '../App.css';
+
 
 function Box(boxOwner) {
 
@@ -14,6 +17,7 @@ function Box(boxOwner) {
     return (
         <div className="Box">
             <header className="Box-header">
+                <img src={mees_box} className="App-logo" alt="mr meeseeks box" />
                 <p>{!data ? "OKNOTOK" : data.name}</p>
             </header>
         </div>

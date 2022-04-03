@@ -6,7 +6,9 @@ function Reality(props) {
     
     return (
         <div className='Reality'>
-            { meeseeks.map((meeseek) => <Meeseeks key={meeseek._id} value={meeseek} />)}    
+            <header className="Component-header">
+                { meeseeks.map((meeseek) => <Meeseeks key={meeseek._id} value={meeseek} />)}    
+            </header>
         </div>
     );
   }

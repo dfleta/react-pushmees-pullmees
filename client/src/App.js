@@ -6,7 +6,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="Component-header">
         <Box value={"jerry"} />
       </header>
     </div>

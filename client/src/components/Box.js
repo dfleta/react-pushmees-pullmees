@@ -25,10 +25,12 @@ function Box(boxOwner) {
 
     return (
         <div className="Box">
+            <header className="App-header">
                 <img src={mees_box} className="App-logo" alt="mr meeseeks box" />
                 <p>{!box ? "OKNOTOK" : box.name}</p>
-                <button onClick={createMeeseeks}>Press Button</button>
+                <button onClick={createMeeseeks} id="pressButton">Press Button</button>
                 <Reality value={meeseeks} />
+            </header>
         </div>
     );
 }

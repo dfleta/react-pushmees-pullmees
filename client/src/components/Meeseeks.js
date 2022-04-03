@@ -21,10 +21,10 @@ function Meeseeks(clon) {
 
     return (
         <div className="Meeseeks" onClick={explode}>
-            { deleted ? <div></div> :
+            { deleted ? <div className="exploded"></div> :
                 <header className="Meeseeks-header">
-                    <img src={mr_meeseeks} className="App-logo" alt="mr meeseeks" />
-                    <p>{!messageOnCreate ? "OKNOTOK" : messageOnCreate}</p>
+                    <img src={mr_meeseeks} className="meeseek" alt="mr meeseeks" />
+                    <p className="message">{!messageOnCreate ? "OKNOTOK" : messageOnCreate}</p>
                 </header>
             }
         </div>

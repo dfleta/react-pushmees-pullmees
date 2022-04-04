@@ -45,7 +45,7 @@ El componente `Box` con el evento `onClick` en el boton `pressButton` crea un nu
 
 Finalmente, `Box` le pasa al componente react `Reality` **su estado** `meeseeks` con todos los meeseeks añadidos, mediante el paso de parámetros `value` de los hooks /componentes.
 
-`Reality`se encarga de actualizar con los componentes react `Meeseeks` añadidos o eliminados, mediante un `map` sobre el parámetro `props` de los hooks /componentes.
+`Reality` se encarga de actualizar con los componentes react `Meeseeks` añadidos o eliminados, mediante un `map` sobre el parámetro `props` de los hooks /componentes.
 
 El componente `Meeseeks` con el evento `onClick` elimina el meeseek de la base de datos a través del endpoint `/reality/explode/${_id}` obteniendo el **id del estado del componente vía hook**.
 
@@ -54,11 +54,16 @@ El componente `Meeseeks` haciendo uso de su propiedad de estado `deleted` decide
 
 ### Minimizando el uso de librerías externas.
 
-He usado la api `fecth` de Javascript, ni siquiera axios u otra similar.
+He usado la api `fetch` de Javascript, ni siquiera axios u otra similar.
 
 ### Desplegada en la nube, ya sea en github pages, en vercel o en netlify.
 
 Desplegado en Heroku.
+
+En este repo no está la configuración final con el setup particular para el despliegue en Heroku.
+
+Aquí se presenta la configuración para ejecutar la app react (puerto 3000) atacando la aplicación node corriendo en `localhost:5000/`.
+
 
 ### Con framework css a elección propia.
 

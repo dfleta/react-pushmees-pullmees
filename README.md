@@ -662,8 +662,8 @@ Dockerfile
 ```Dockerfile
 FROM node:lts-alpine
 ENV NODE_ENV=production
-ENV ATLAS_USER="ollivanders"
-ENV ATLAS_PASSWORD="ollivanders"
+ENV ATLAS_USER="user"
+ENV ATLAS_PASSWORD="password"
 WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN npm install --production --silent && mv node_modules ../

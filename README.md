@@ -35,7 +35,7 @@ Para desplegar la app react más la API REST en express he desplegado el proyect
 
 En este repo no está la configuración final con el setup particular para el despliegue en Heroku. Aquí se presenta la configuración para ejecutar la app react (puerto 3000) atacando la aplicación node corriendo en `localhost:5000/`.
 
-### Totalmente segmentada en componentes reutilizables + Al menos 3 componentes que interactúen entre si + el uso de un state management a nivel de aplicación.
+### 2. Totalmente segmentada en componentes reutilizables + Al menos 3 componentes que interactúen entre si + el uso de un state management a nivel de aplicación.
 
 El componente react `APP` consume el componente `Box` que a su vez presenta el componente `Reality` al que se añaden los componentes `Meeseeks`.
 
@@ -52,11 +52,11 @@ El componente `Meeseeks` con el evento `onClick` elimina el meeseek de la base d
 El componente `Meeseeks` haciendo uso de su propiedad de estado `deleted` decide si se pinta o no y el componente `Reality` actualiza el DOM.
 
 
-### Minimizando el uso de librerías externas.
+### 3. Minimizando el uso de librerías externas.
 
 He usado la api `fetch` de Javascript, ni siquiera axios u otra similar.
 
-### Desplegada en la nube, ya sea en github pages, en vercel o en netlify.
+### 4. Desplegada en la nube, ya sea en github pages, en vercel o en netlify.
 
 Desplegado en Heroku.
 
@@ -65,7 +65,7 @@ En este repo no está la configuración final con el setup particular para el de
 Aquí se presenta la configuración para ejecutar la app react (puerto 3000) atacando la aplicación node corriendo en `localhost:5000/`.
 
 
-### Con framework css a elección propia.
+### 5. Con framework css a elección propia.
 
 Para hacer un mísero `flexbox` ;) no he incluido una dependencia más al proyecto. 
 

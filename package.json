@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "cross-env PORT=3001 NODE_ENV=production node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "serverstart": "cross-env PORT=3001 NODE_ENV=development DEBUG=pushmees_pullmeesh:* npm run devstart",
     "migrate": "node ./db/migrate.js",

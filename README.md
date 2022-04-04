@@ -1,7 +1,7 @@
 APP REACT
 =========
 
-## Enlace de la web publica
+## Web pública
 
 https://pushmees-pullmees.herokuapp.com/ 
 
@@ -20,14 +20,14 @@ Se trata de programar este caso de uso:
 [![Cómo invocar a un Mr Meeseeks](./mrmeeseeks_sequence.png)](https://www.youtube.com/watch?v=qUYvIAP3qQk&t=3s)
 
 
-## Código react
+## Componentes react
 
-[](./client/)
+[components](./client/src/components/)
 
 
 ## Objetivos
 
-### 1. Inclusion de una api externa a decidir, aunque pueden ser ficheros json estáticos (strapi?)
+### 1. Inclusión de una api externa a decidir, aunque pueden ser ficheros json estáticos (strapi)
 
 Ha añadido una app react a una API REST que ya tenía construida y dockerizada en node + express. 
 
@@ -35,7 +35,7 @@ Para desplegar la app react más la API REST en express he desplegado el proyect
 
 En este repo no está la configuración final con el setup particular para el despliegue en Heroku. Aquí se presenta la configuración para ejecutar la app react (puerto 3000) atacando la aplicación node corriendo en `localhost:5000/`.
 
-### 2. Totalmente segmentada en componentes reutilizables + Al menos 3 componentes que interactúen entre si + el uso de un state management a nivel de aplicación.
+### 2. Segmentada en componentes reutilizables + al menos 3 componentes que interactúen entre si + el uso de un state management a nivel de aplicación.
 
 El componente react `APP` consume el componente `Box` que a su vez presenta el componente `Reality` al que se añaden los componentes `Meeseeks`.
 

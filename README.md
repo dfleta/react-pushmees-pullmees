@@ -556,8 +556,8 @@ https://stackoverflow.com/questions/65564126/encrypt-passwords-stored-in-environ
 ### Solución I
 
 > $ sudo pico /etc/profile.d/development_env.sh
-> export ATLAS_USER="ollivanders"
-> export ATLAS_PASSWORD="ollivanders"
+> export ATLAS_USER="user"
+> export ATLAS_PASSWORD="password"
 
 Cerrar la sesión y volver a entrar para forzar la carga de las variables de entorno.
 
